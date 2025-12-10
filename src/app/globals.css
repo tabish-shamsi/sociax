@@ -186,3 +186,30 @@
     @apply bg-background text-foreground;
   }
 }
+
+.tiptap-empty::before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
+.ProseMirror:focus {
+  outline: none !important;
+}
+
+/* Remove annoying browser focus border */
+.ProseMirror:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ProseMirror {
+  border: none !important;
+  box-shadow: none !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-break: anywhere;
+}
