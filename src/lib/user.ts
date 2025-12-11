@@ -3,4 +3,5 @@ export const user = {
   role: "Web Developer",
   email: "tabish@example.com",
   avatar: "https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png",
+  username: "tabish-shamsi"
 };

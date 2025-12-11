@@ -16,6 +16,8 @@ import {
 import { UserIcon, Settings, Moon, Sun, LogOut } from "lucide-react";
 import User from "../global/User";
 import { user } from "@/lib/user";
+import { Avatar, AvatarImage } from "../ui/avatar";
+import CustomAvatarFallback from "../global/CustomAvatarFallback";
 
 export default function UserDropdown() {
   const { theme, toggleTheme } = useThemeToggle();
@@ -24,13 +26,19 @@ export default function UserDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="cursor-pointer">
         <div>
-          <User
-            title={user.name}
-            subtitle={user.role}
-            avatarSrc={user.avatar}
-            titleColor="text-gray-200"
-            size="10"
-          />
+          <div className="flex items-center gap-2">
+            <Avatar className="w-10 h-10">
+              <AvatarImage src={""} alt={user.name} />
+              <CustomAvatarFallback name={user.name} />
+            </Avatar>
+
+            <div className="hidden lg:flex flex-col">
+              <h3 className="font-semibold text-white">
+                {user.name}
+              </h3>
+              <span className="text-gray-300 text-sm">@{user.username}</span>
+            </div>
+          </div>
         </div>
       </DropdownMenuTrigger>
 
@@ -39,7 +47,7 @@ export default function UserDropdown() {
         <DropdownMenuLabel className="flex items-center gap-2">
           <User
             title={user.name}
-            subtitle={user.email}
+            subtitle={`@${user.username}`}
             avatarSrc={user.avatar}
             size="8"
           />

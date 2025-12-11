@@ -1,4 +1,4 @@
-import { BellRing, MessageCircleMore } from "lucide-react";
+import { MessageCircleMore } from "lucide-react";
 import { DesktopSearchBar, MobileSearchBar } from "./search";
 import NavMenuDrop from "./nav-dropdown";
 import UserDropdown from "./user-dropdown";

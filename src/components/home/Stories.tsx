@@ -1,4 +1,4 @@
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -21,11 +21,14 @@ export default function Stories() {
     return aHasUnwatched ? -1 : 1;
   });
   return (
-    <Card className="lg:hidden">
+    <Card className="lg:hidden gap-2">
+      <CardHeader>
+        <CardTitle>Stories</CardTitle>
+      </CardHeader>
       <CardContent>
         <Carousel className="w-full">
           <CarouselContent>
-            <CarouselItem className="flex items-center justify-center cursor-pointer basis-1/5 h-20">
+            <CarouselItem className="flex items-center justify-center cursor-pointer basis-1/3 md:basis-1/4 h-20">
               <Link
                 href="/stories/create"
                 className="flex justify-center cursor-pointer relative"
@@ -54,7 +57,7 @@ export default function Stories() {
               return (
                 <CarouselItem
                   key={user._id}
-                  className="flex items-center justify-center cursor-pointer basis-1/5 h-20"
+                  className="flex items-center justify-center cursor-pointer basis-1/3 md:basis-1/4 h-20"
                 >
                   <Avatar
                     className={cn(

@@ -5,24 +5,25 @@ import BirthdayWidget from "@/components/home/BirthdayWidget";
 import ActivityCard from "@/components/home/ActivityCard";
 import FriendsSuggestion from "@/components/global/FriendsSuggestion";
 import Stories from "@/components/home/Stories";
-import UploadPost from "@/components/home/UploadPost";
-import { user } from "@/lib/user";
+import CreatePost from "../../components/home/CreatePost";
+import Feed from "@/components/home/Feed";
 
 export default function HomePage() {
   return (
-    <section id="Home_Page" className="flex gap-8 w-full">
-      <aside className="flex flex-col gap-8 w-1/4 ">
+    <section id="Home_Page" className="flex gap-4 lg:gap-8 w-full">
+      <aside className="hidden lg:flex flex-col gap-8 xl:w-1/4 lg:w-1/3 ">
         <WeatherWidget />
         <Calendar_Events />
         <PagesSuggestion />
       </aside>
 
-      <main className="w-1/2 flex flex-col gap-8">
+      <main className="w-full lg:w-[60%] xl:w-1/2 flex flex-col gap-6 lg:gap-8">
         <Stories />
-        <UploadPost user={user} />
+        <CreatePost />
+        <Feed />
       </main>
 
-      <aside className="flex flex-col gap-8 w-1/4">
+      <aside className="hidden xl:flex flex-col gap-8 w-1/4">
         <BirthdayWidget />
         <ActivityCard />
         <FriendsSuggestion />

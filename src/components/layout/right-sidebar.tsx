@@ -28,7 +28,7 @@ export function StoriesSidebar() {
 
   return (
     <aside className="fixed top-16 right-0 hidden lg:flex flex-col w-20 py-4 bg-card border-l h-screen">
-      <div className="flex flex-col gap-4 px-2">
+      <div className="flex flex-col gap-8 px-2">
         <Link
           href="/stories/create"
           className="flex justify-center cursor-pointer relative"
