@@ -12,9 +12,7 @@ export default function AppLayout({ children }: CustomLayoutProps) {
         <LeftSidebar />
         <StoriesSidebar />
 
-        <div className="mt-16 lg:mx-20 lg:p-8 lg:w-auto md:w-xl p-6 mx-auto">
-          {children}
-        </div>
+        {children}
       </div>
     </TooltipProvider>
   );

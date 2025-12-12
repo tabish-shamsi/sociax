@@ -11,6 +11,9 @@ export default function PageTitle() {
     }
   })[0].name  
 
+  console.log(title);
+  
+
   return (
     <h2 className="text-lg font-semibold text-gray-100 px-4 lg:px-8 hidden md:block">
       {title} Page

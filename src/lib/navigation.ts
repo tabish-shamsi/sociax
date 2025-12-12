@@ -17,7 +17,7 @@ export const navItems = [
   },
   {
     name: "Profile",
-    href: "/profile",
+    href: "/tabish",
     icon: User,
   },
   {
