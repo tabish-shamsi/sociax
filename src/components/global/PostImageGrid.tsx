@@ -32,13 +32,13 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
     <div className="w-full">
       {/* ONE IMAGE */}
       {images.length === 1 && (
-        <div className="relative rounded-lg overflow-hidden border group h-80">
+        <div className="relative rounded-sm overflow-hidden border group h-80">
           <Image
             src={images[0].url}
             alt=""
-            fill
-            className="object-cover"
-            sizes="100%"
+            height={160}
+            width={267.5}
+            className="object-cover w-full h-full"
           />
           {RemoveButton(images[0].url)}
         </div>
@@ -46,18 +46,18 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
 
       {/* TWO IMAGES */}
       {images.length === 2 && (
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-1">
           {images.map((img) => (
             <div
               key={img._id ?? img.url}
-              className="relative rounded-lg overflow-hidden border group h-48"
+              className="relative rounded-sm overflow-hidden border group h-48"
             >
               <Image
                 src={img.url}
                 alt=""
-                fill
-                className="object-cover"
-                sizes="50vw"
+                height={95}
+                width={132}
+                className="object-cover w-full h-full"
               />
               {RemoveButton(img.url)}
             </div>
@@ -67,15 +67,15 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
 
       {/* THREE IMAGES */}
       {images.length === 3 && (
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-1">
           {/* Top big image */}
-          <div className="relative col-span-2 rounded-lg overflow-hidden border group h-60">
+          <div className="relative col-span-2 rounded-sm overflow-hidden border group h-60">
             <Image
               src={images[0].url}
               alt=""
-              fill
-              className="object-cover"
-              sizes="100vw"
+              height={119}
+              width={267.5}
+              className="object-cover w-full h-full"
             />
             {RemoveButton(images[0].url)}
           </div>
@@ -84,14 +84,14 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
           {images.slice(1).map((img) => (
             <div
               key={img._id ?? img.url}
-              className="relative rounded-lg overflow-hidden border group h-40"
+              className="relative rounded-sm overflow-hidden border group h-40"
             >
               <Image
                 src={img.url}
                 alt=""
-                fill
-                className="object-cover"
-                sizes="50vw"
+                height={95}
+                width={132}
+                className="object-cover w-full h-full"
               />
               {RemoveButton(img.url)}
             </div>
@@ -101,24 +101,24 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
 
       {/* FOUR OR MORE */}
       {images.length >= 4 && (
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-1">
           {displayImages.map((img, idx) => (
             <div
               key={img._id ?? img.url}
-              className="relative rounded-lg overflow-hidden border group h-40"
+              className="relative rounded-sm overflow-hidden border group h-40"
             >
               <Image
                 src={img.url}
                 alt=""
-                fill
-                className="object-cover"
-                sizes="50vw"
+                height={95}
+                width={132}
+                className="object-cover w-full h-full"
               />
               {RemoveButton(img.url)}
 
               {/* +N overlay */}
               {idx === 3 && remaining > 0 && (
-                <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-3xl font-bold rounded-lg">
+                <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-3xl font-bold rounded-sm">
                   +{remaining}
                 </div>
               )}

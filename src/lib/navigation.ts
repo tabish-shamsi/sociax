@@ -8,6 +8,7 @@ import {
   CloudSun,
   Calendar,
 } from "lucide-react";
+import { user } from "./user";
 
 export const navItems = [
   {
@@ -17,7 +18,7 @@ export const navItems = [
   },
   {
     name: "Profile",
-    href: "/tabish",
+    href: `/${user.username}`,
     icon: User,
   },
   {

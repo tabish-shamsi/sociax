@@ -262,6 +262,18 @@ export const posts: Post[] = [
         url: "https://images.pexels.com/photos/210415/pexels-photo-210415.jpeg",
         _id: "img14",
       },
+      {
+        url: "https://images.pexels.com/photos/210415/pexels-photo-210415.jpeg",
+        _id: "img15",
+      },
+      {
+        url: "https://images.pexels.com/photos/210415/pexels-photo-210415.jpeg",
+        _id: "img16",
+      },
+      {
+        url: "https://images.pexels.com/photos/210415/pexels-photo-210415.jpeg",
+        _id: "img17",
+      },
     ],
     createdAt: new Date("2025-12-01T17:30:00Z"),
   },
