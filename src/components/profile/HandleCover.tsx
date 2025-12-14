@@ -7,6 +7,7 @@ import { Camera } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
 import UploadImageDialogContent from "./UploadImageDialogContent";
+import UploadImageDialog from "./UploadImageDialog";
 
 export default function HandleCover() {
   const coverRef = useRef<HTMLInputElement>(null);
@@ -28,7 +29,7 @@ export default function HandleCover() {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <>
       <div
         onClick={() => setOpen(true)}
         className="w-full h-48 md:h-[230px] lg:h-[307px] xl:h-96 relative"
@@ -53,15 +54,15 @@ export default function HandleCover() {
           ref={coverRef}
         />
       </div>
-
-      <UploadImageDialogContent
+      <UploadImageDialog
         image={image}
         imageType="Cover"
         ref={coverRef}
         setCroppedImage={setCover}
         setImage={setImage}
         setOpen={setOpen}
+        open={open}
       />
-    </Dialog>
+    </>
   );
 }

@@ -1,8 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { DialogFooter } from "../ui/dialog";
+import { Button } from "../ui/button";
+import { useState } from "react";
 
-var placeholderImages = [
+const placeholderImages = [
   {
     _id: "img1",
     url: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg",
@@ -47,21 +51,75 @@ var placeholderImages = [
 
 interface Props {
   open: boolean;
+  setImage: Function;
+  resetState: Function;
   setOpen: Function;
+  setChoosePhotos: Function;
+  
 }
 
-export default function ChooseFromMyPhotos({ open, setOpen }: Props) {
-    console.log(open);
-    
-  if (open) {
-    return (
-      <div className="w-full h-64 grid grid-cols-3 gap-4 overflow-y-auto">
-        {placeholderImages.map(({ url }) => (
-          <div className="w-full h-full">
-            <img src={url} alt="" className="w-full h-full object-cover rounded-sm" />
-          </div>
+export default function ChooseFromMyPhotos({
+  open,
+  setImage,
+  resetState,
+  setOpen,
+  setChoosePhotos
+}: Props) {
+  const [selectedImage, setSelectedImage] = useState("");
+
+  if (!open) return null;
+
+  return (
+    <>
+      <RadioGroup
+        value={selectedImage}
+        onValueChange={setSelectedImage}
+        className="w-full h-64 grid grid-cols-3 gap-4 overflow-y-auto p-6"
+      >
+        {placeholderImages.map(({ url, _id }) => (
+          <label key={_id} className="relative cursor-pointer">
+            <RadioGroupItem value={url} id={_id} className="peer sr-only" />
+
+            <Image
+              src={url}
+              alt=""
+              width={120}
+              height={48}
+              className="
+                w-full h-24 object-cover rounded-sm
+                border-2 border-transparent
+                peer-data-[state=checked]:border-primary
+              "
+            />
+          </label>
         ))}
-      </div>
-    );
-  }
+      </RadioGroup>
+
+      <DialogFooter>
+        <div className="flex items-center justify-end w-full p-6 gap-2">
+          <Button
+            variant="secondary"
+            onClick={() => {
+              resetState();
+              setOpen(false);
+            }}
+            className="w-1/2"
+          >
+            Cancel
+          </Button>
+
+          <Button
+            className="w-1/2"
+            onClick={() => {
+              setImage(selectedImage);
+              setChoosePhotos(false);
+            }}
+            disabled={!selectedImage}
+          >
+            Confirm Photo
+          </Button>
+        </div>
+      </DialogFooter>
+    </>
+  );
 }

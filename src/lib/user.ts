@@ -38,4 +38,89 @@ export const user = {
       username: "avamitchell",
     },
   ],
+  socials: [
+    {
+      name: "Facebook",
+      link: "https://www.facebook.com/info.tabish",
+    },
+    {
+      name: "Instagram",
+      link: "https://www.instagram.com/tabish.ashamsi",
+    },
+    {
+      name: "Twitter",
+      link: "https://x.com",
+    },
+  ],
+};
+
+export const interests = {
+  Hobbies:
+    "Bike Riding, swimming, working out, design magazines, go to museums, watching tv shows",
+  favourite_tv_shows:
+    "Breaking Good, RedDevil, People of Interest, The Running Dead, Found, American Guy",
+  favourite_movies:
+    "Idiocratic, The Scarred Wizard and the Fire Crown, Crime Squad, Ferrum Man.",
+  favourite_games:
+    "The First of Us, Assassin’s Squad, Dark Asylum, NMAK16, Last Cause 4, Grand Snatch Auto.",
+  favourite_music_artists:
+    "Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.",
+  favourite_books:
+    "The Crime of the Century, Egyptian Mythology 101, The Scarred Wizard, Lord of the Wings, Amongst Gods, The Oracle, A Tale of Air and Water.",
+  favourite_writers:
+    "Martin T. Gergeston, Johnathan R. Token, Ivana Rowle, Alexandria Platt, Marcus Roth.",
+  other_interests:
+    "Swimming, Surfing, Scuba Diving, Anime, Photography, Tattoos, Street Art.",
+};
+
+export const educationAndEmployment = [
+  {
+    title: "Bachelor of Interactive Design – The New College of Design",
+    timestamp: "2001 – 2006",
+    description:
+      "Completed a five-year intensive Bachelor of Interactive Design program at The New College of Design. Graduated with an A+ average.",
+  },
+  {
+    title: "Digital Design Intern – Multimedz Agency",
+    timestamp: "2006 – 2008",
+    description:
+      "Worked as a Digital Design Intern, responsible for client communication and supporting design projects.",
+  },
+  {
+    title: "Digital Illustration Course – Rembrandt Institute",
+    timestamp: "2008",
+    description:
+      "Completed a five-month Digital Illustration course under Professor Leonardo Stagg.",
+  },
+  {
+    title: "UI/UX Designer – Daydreams Agency",
+    timestamp: "2008 – 2013",
+    description:
+      "Worked as a UI/UX Designer, designing user interfaces and experiences for various client projects.",
+  },
+  {
+    title: "Motion Graphics Course – The Digital College",
+    timestamp: "2010",
+    description:
+      "Completed a six-month intensive Motion Graphics course focusing on After Effects and Premiere. Professor: Donatello Urtle.",
+  },
+  {
+    title: "Senior UI/UX Designer – Daydreams Agency",
+    timestamp: "2013 – Now",
+    description:
+      "Lead a team of ten designers, overseeing all projects, managing workflows, and communicating with potential clients.",
+  },
+];
+
+export const personalInfo = {
+  about_me:
+    "Hi, I’m James, I’m 36 and I work as a Digital Designer for the “Daydreams” Agency in Pier 56.",
+  birthday: "December 14th, 1980",
+  birthplace: "Austin, Texas, USA",
+  lives_in: "San Francisco, California, USA",
+  occupation: "UI/UX Designer",
+  joined: "April 31st, 2014",
+  gender: "Male",
+  status: "Married",
+  website: "daydreamsagency.com",
 };

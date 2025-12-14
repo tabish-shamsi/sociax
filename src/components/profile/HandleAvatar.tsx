@@ -8,6 +8,7 @@ import CustomAvatarFallback from "../global/CustomAvatarFallback";
 import { Camera } from "lucide-react";
 import { toast } from "sonner";
 import UploadImageDialogContent from "./UploadImageDialogContent";
+import UploadImageDialog from "./UploadImageDialog";
 
 export default function HandleAvatar() {
   const avatarRef = useRef<HTMLInputElement>(null);
@@ -29,7 +30,7 @@ export default function HandleAvatar() {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <>
       <div
         onClick={() => {
           setOpen(true);
@@ -52,15 +53,15 @@ export default function HandleAvatar() {
           ref={avatarRef}
         />
       </div>
-
-      <UploadImageDialogContent
+      <UploadImageDialog
         image={image}
         imageType="Avatar"
         ref={avatarRef}
         setCroppedImage={setAvatar}
         setImage={setImage}
         setOpen={setOpen}
+        open={open}
       />
-    </Dialog>
+    </>
   );
 }
