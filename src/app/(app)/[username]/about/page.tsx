@@ -1,3 +1,4 @@
+import PersonalInfo from "@/components/profile/about/PersonalInfo";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,14 +14,11 @@ import {
   personalInfo,
   user,
 } from "@/lib/user";
-import { Ellipsis, NotebookPen } from "lucide-react";
-import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { Ellipsis, NotebookPen } from "lucide-react"; 
 
 export default function page() {
-  const profileInfoArray = Object.entries(personalInfo).map(([key, value]) => ({
-    key,
-    value,
-  }));
+  
+
   const interestsArray = Object.entries(interests).map(([key, value]) => ({
     key,
     value,
@@ -30,57 +28,10 @@ export default function page() {
     <section
       id="Profile_Page"
       className="flex flex-col lg:flex-row gap-4 lg:gap-8 w-full"
-    >
+    > 
       <aside className="flex flex-col gap-8 w-full lg:w-[40%]">
-        <Card className="p-0 gap-0">
-          <CardHeader className="p-6 gap-0 -mb-2">
-            <div className="flex items-center justify-between">
-              <CardTitle>Personal Info</CardTitle>
-              <CardAction>
-                <Button variant="secondary" size="icon-sm">
-                  <NotebookPen className="text-muted-foreground" />
-                </Button>
-              </CardAction>
-            </div>
-          </CardHeader>
-          <Separator />
-
-          <CardContent className="p-6 flex flex-col gap-6">
-            {profileInfoArray.map(({ key, value }) => (
-              <div key={key} className="flex gap-2 ">
-                <h3 className="text-sm font-medium text-card-foreground w-1/3 capitalize">
-                  {key.split("_").join(" ")}:
-                </h3>
-                <p className="text-xs text-muted-foreground w-[66.666%] text-justify">
-                  {value}
-                </p>
-              </div>
-            ))}
-
-            <div className="">
-              <h3 className="text-sm font-medium text-card-foreground  capitalize">
-                Social Networks:
-              </h3>
-              <div className="flex flex-col mt-4 gap-4">
-                {user.socials.map(({ name, link }) => (
-                  <a href={link} target="_blank">
-                    <Button
-                      variant="outline"
-                      className="w-full border-primary hover:bg-primary bg-transparent text-primary dark:text-primary dark:bg-transparent hover:text-white dark:border-primary dark:hover:bg-primary  dark:hover:text-white "
-                    >
-                      {name === "Facebook" && <FaFacebookF />}
-                      {name === "Instagram" && <FaInstagram />}
-                      {name === "Twitter" && <FaXTwitter />}
-                      {name}
-                    </Button>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <PersonalInfo personalInfo={personalInfo} />
       </aside>
-
       <main className="w-full lg:w-[60%] flex flex-col gap-8">
         <Card className="p-0 gap-0">
           <CardHeader className="p-6 gap-0 -mb-2">

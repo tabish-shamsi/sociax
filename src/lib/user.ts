@@ -115,11 +115,11 @@ export const educationAndEmployment = [
 export const personalInfo = {
   about_me:
     "Hi, I’m James, I’m 36 and I work as a Digital Designer for the “Daydreams” Agency in Pier 56.",
-  birthday: "December 14th, 1980",
+  birthday: new Date('December 14th, 1980'),
   birthplace: "Austin, Texas, USA",
   lives_in: "San Francisco, California, USA",
   occupation: "UI/UX Designer",
-  joined: "April 31st, 2014",
+  joined: new Date("April 31st, 2014"),
   gender: "Male",
   status: "Married",
   website: "daydreamsagency.com",

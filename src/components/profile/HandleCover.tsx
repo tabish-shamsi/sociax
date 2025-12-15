@@ -1,12 +1,10 @@
 "use client";
 
 import { user } from "@/lib/user";
-import { useRef, useState } from "react";
-import { Dialog } from "../ui/dialog";
+import { useRef, useState } from "react"; 
 import { Camera } from "lucide-react";
 import { toast } from "sonner";
-import Image from "next/image";
-import UploadImageDialogContent from "./UploadImageDialogContent";
+import Image from "next/image"; 
 import UploadImageDialog from "./UploadImageDialog";
 
 export default function HandleCover() {

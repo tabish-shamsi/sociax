@@ -1,13 +1,11 @@
 "use client";
 
 import { user } from "@/lib/user";
-import { useRef, useState } from "react";
-import { Dialog } from "../ui/dialog";
+import { useRef, useState } from "react"; 
 import { Avatar, AvatarImage } from "../ui/avatar";
 import CustomAvatarFallback from "../global/CustomAvatarFallback";
 import { Camera } from "lucide-react";
-import { toast } from "sonner";
-import UploadImageDialogContent from "./UploadImageDialogContent";
+import { toast } from "sonner"; 
 import UploadImageDialog from "./UploadImageDialog";
 
 export default function HandleAvatar() {
