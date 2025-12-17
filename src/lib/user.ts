@@ -55,7 +55,7 @@ export const user = {
 };
 
 export const interests = {
-  Hobbies:
+  hobbies:
     "Bike Riding, swimming, working out, design magazines, go to museums, watching tv shows",
   favourite_tv_shows:
     "Breaking Good, RedDevil, People of Interest, The Running Dead, Found, American Guy",
@@ -115,12 +115,82 @@ export const educationAndEmployment = [
 export const personalInfo = {
   about_me:
     "Hi, I’m James, I’m 36 and I work as a Digital Designer for the “Daydreams” Agency in Pier 56.",
-  birthday: new Date('December 14th, 1980'),
+  birthday: new Date("2007, 9, 28"),
   birthplace: "Austin, Texas, USA",
   lives_in: "San Francisco, California, USA",
   occupation: "UI/UX Designer",
-  joined: new Date("April 31st, 2014"),
+  joined: new Date("2025, 8, 29"),
   gender: "Male",
   status: "Married",
   website: "daydreamsagency.com",
 };
+
+export const posts = [
+  {
+    _id: "postId_1",
+    content: "Had an amazing day exploring the city! 🌆",
+    images: [
+      {
+        url: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg",
+        _id: "img1",
+      },
+    ],
+    createdAt: new Date("2025-12-10T14:32:00Z"),
+  },
+
+  {
+    _id: "postId_2",
+    content: "This café never disappoints ☕💛",
+    images: [
+      {
+        url: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg",
+        _id: "img2",
+      },
+      {
+        url: "https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg",
+        _id: "img3",
+      },
+    ],
+    taggedFriends: [{ name: "Michael Tan", username: "miket" }],
+    createdAt: new Date("2025-12-09T09:15:00Z"),
+  },
+
+  {
+    _id: "postId_3",
+    feeling: "happy 😄",
+    content: "Feeling blessed today.",
+    createdAt: new Date("2025-12-08T18:47:00Z"),
+  },
+
+  {
+    _id: "postId_4",
+    message: "updated their profile picture",
+    images: [
+      {
+        url: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
+        _id: "img4",
+      },
+    ],
+    createdAt: new Date("2025-12-07T12:00:00Z"),
+  },
+
+  {
+    _id: "postId_5",
+    content: "Can’t believe this happened today 😂",
+    images: [
+      {
+        url: "https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg",
+        _id: "img5",
+      },
+      {
+        url: "https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg",
+        _id: "img6",
+      },
+      {
+        url: "https://images.pexels.com/photos/34950/pexels-photo.jpg",
+        _id: "img7",
+      },
+    ],
+    createdAt: new Date("2025-12-07T12:00:00Z"),
+  },
+];

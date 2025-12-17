@@ -32,13 +32,14 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
     <div className="w-full">
       {/* ONE IMAGE */}
       {images.length === 1 && (
-        <div className="relative rounded-sm overflow-hidden border group h-80">
+        <div className="relative rounded-sm overflow-hidden border group" //h-80
+         >
           <Image
             src={images[0].url}
             alt=""
             height={160}
             width={267.5}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-auto"
           />
           {RemoveButton(images[0].url)}
         </div>
@@ -50,14 +51,14 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
           {images.map((img) => (
             <div
               key={img._id ?? img.url}
-              className="relative rounded-sm overflow-hidden border group h-48"
-            >
+              className="relative rounded-sm overflow-hidden border group" // h-48 
+            > 
               <Image
                 src={img.url}
                 alt=""
                 height={95}
                 width={132}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-auto"
               />
               {RemoveButton(img.url)}
             </div>
@@ -69,13 +70,14 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
       {images.length === 3 && (
         <div className="grid grid-cols-2 gap-1">
           {/* Top big image */}
-          <div className="relative col-span-2 rounded-sm overflow-hidden border group h-60">
+          <div className="relative col-span-2 rounded-sm overflow-hidden border group " // h-60
+          >
             <Image
               src={images[0].url}
               alt=""
               height={119}
               width={267.5}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-auto"
             />
             {RemoveButton(images[0].url)}
           </div>
@@ -84,7 +86,7 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
           {images.slice(1).map((img) => (
             <div
               key={img._id ?? img.url}
-              className="relative rounded-sm overflow-hidden border group h-40"
+              className="relative rounded-sm overflow-hidden border group " //h-40
             >
               <Image
                 src={img.url}
@@ -105,14 +107,14 @@ export function PostImageGrid({ images, onRemove }: PostImageGridProps) {
           {displayImages.map((img, idx) => (
             <div
               key={img._id ?? img.url}
-              className="relative rounded-sm overflow-hidden border group h-40"
+              className="relative rounded-sm overflow-hidden border group" // h-40
             >
               <Image
                 src={img.url}
                 alt=""
                 height={95}
                 width={132}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-auto"
               />
               {RemoveButton(img.url)}
 

@@ -1,0 +1,17 @@
+export const statuses = [
+  "Single",
+  "Married",
+  "Widowed",
+  "Divorced",
+  "Separated",
+  "Engaged",
+  "In a relationship",
+  "Civil Union",
+  "Domestic Partnership",
+  "Complicated",
+  "Annulled",
+  "Cohabiting",
+  "Polyamorous",
+  "Common-law Marriage",
+  "Prefer not to say",
+];

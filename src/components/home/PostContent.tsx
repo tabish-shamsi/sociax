@@ -1,5 +1,5 @@
 import Placeholder from "@tiptap/extension-placeholder";
-import { Editor, EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 interface ContentProps {

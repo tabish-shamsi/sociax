@@ -1,0 +1,15 @@
+ export const genders = [
+    "Male",
+    "Female",
+    "Non-binary",
+    "Transgender Male",
+    "Transgender Female",
+    "Genderqueer",
+    "Genderfluid",
+    "Agender",
+    "Bigender",
+    "Two-Spirit",
+    "Intersex",
+    "Prefer not to say",
+    "Other",
+  ];
