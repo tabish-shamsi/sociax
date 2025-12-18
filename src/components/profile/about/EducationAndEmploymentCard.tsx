@@ -47,11 +47,11 @@ export default function EducationAndEmploymentCard({}: Props) {
       <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6 w-full">
         {eduEmp.map(({ title, timestamp, description }) => (
           <div key={title} className="w-full">
-            <h3 className="text-sm font-medium text-card-foreground capitalize">
+            <h3 className="font-medium text-card-foreground capitalize">
               {title}
             </h3>
             <span className="text-xs text-gray-400">{timestamp}</span>
-            <p className="text-xs text-muted-foreground">{description}</p>
+            <p className="text-sm text-muted-foreground">{description}</p>
           </div>
         ))}
       </CardContent>

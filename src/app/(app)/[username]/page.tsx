@@ -1,4 +1,5 @@
 import PostCard from "@/components/global/PostCard";
+import Following from "@/components/profile/timeline/Following";
 import Friends from "@/components/profile/timeline/Friends";
 import LastPhotos from "@/components/profile/timeline/LastPhotos";
 import ProfileIntro from "@/components/profile/timeline/ProfileIntro";
@@ -23,6 +24,7 @@ export default function ProfilePage() {
         <ProfileIntro />
         <LastPhotos />
         <Friends />
+        <Following />
       </aside>
 
       <main className="w-full lg:w-[65%] flex flex-col gap-6 lg:gap-8">{

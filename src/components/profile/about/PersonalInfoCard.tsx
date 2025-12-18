@@ -378,10 +378,10 @@ export default function PersonalInfoCard() {
       <CardContent className="p-6 flex flex-col gap-6">
         {Object.entries(personalInformation).map(([key, value]) => (
           <div key={key} className="flex gap-2 ">
-            <h3 className="text-sm font-medium text-card-foreground w-1/3 capitalize">
+            <h3 className="font-medium text-card-foreground w-1/3 capitalize">
               {key.split("_").join(" ")}:
             </h3>
-            <p className="text-xs text-muted-foreground w-[66.666%] text-justify">
+            <p className="text-sm text-muted-foreground w-[66.666%] text-justify">
               {key === "birthday" || key === "joined"
                 ? format(new Date(value), "dd MMM yyyy")
                 : String(value)}
