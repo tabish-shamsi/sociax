@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { CustomLayoutProps } from "@/types/CustomLayoutProps";
 import { Toaster } from "@/components/ui/sonner";
+import AuthProvider from "@/context/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Sociax",
@@ -10,14 +11,15 @@ export const metadata: Metadata = {
     "A social media website to share your thoughts, connect with your friends, share your music playlist etc all in one website",
 };
 
-const roboto = Roboto()
+const roboto = Roboto();
 
 export default function RootLayout({ children }: CustomLayoutProps) {
   return (
     <html lang="en">
       <body className={roboto.className}>
         <Toaster />
-        {children}</body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }

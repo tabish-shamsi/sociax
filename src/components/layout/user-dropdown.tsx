@@ -15,12 +15,16 @@ import {
 
 import { UserIcon, Settings, Moon, Sun, LogOut } from "lucide-react";
 import User from "../global/User";
-import { user } from "@/lib/user";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import CustomAvatarFallback from "../global/CustomAvatarFallback";
+import { useSession } from "next-auth/react";
 
 export default function UserDropdown() {
   const { theme, toggleTheme } = useThemeToggle();
+  const { data: session } = useSession();
+  const user = session?.user;
+
+  if (!user) return;
 
   return (
     <DropdownMenu>
@@ -33,9 +37,7 @@ export default function UserDropdown() {
             </Avatar>
 
             <div className="hidden lg:flex flex-col">
-              <h3 className="font-semibold text-white">
-                {user.name}
-              </h3>
+              <h3 className="font-semibold text-white">{user.name}</h3>
               <span className="text-gray-300 text-sm">@{user.username}</span>
             </div>
           </div>
@@ -48,7 +50,7 @@ export default function UserDropdown() {
           <User
             title={user.name}
             subtitle={`@${user.username}`}
-            avatarSrc={user.avatar}
+            avatarSrc={user.avatar as string}
             size="8"
           />
         </DropdownMenuLabel>
