@@ -1,8 +1,24 @@
 import mongoose from "mongoose";
 
-type PersonalInfo = {
+
+
+export type Social = {
+  _id: string;
+  name: string;
+  link: string;
+}
+
+export type PersonalInfo = {
   birthday: Date;
   gender: string;
+  about_me?: string;
+  birthplace?: string;
+  occupation?: string;
+  lives_in?: string;
+  joined?: Date;
+  status?: string;
+  website?: string;
+  socials: Social[];
 };
 
 export type User = {
@@ -16,7 +32,15 @@ export type User = {
   verified: boolean;
   verificationCode?: string;
   verificationExpiry?: Date;
+
+  createdAt: Date;
+  updatedAt: Date;
 };
+
+const socialSchema = new mongoose.Schema<Social>({
+  name: String,
+  link: String,
+});
 
 const userSchema = new mongoose.Schema<User>(
   {
@@ -62,8 +86,17 @@ const userSchema = new mongoose.Schema<User>(
         required: true,
         trim: true,
       },
+      about_me: String,
+      birthplace: String,
+      occupation: String,
+      lives_in: String,
+      status: String,
+      joined: {
+        type: Date,
+        default: new Date(),
+      },
+      socials: [socialSchema],
     },
-
     verificationCode: String,
     verificationExpiry: Date,
   },
