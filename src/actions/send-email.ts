@@ -24,7 +24,7 @@ export async function sendEmail(email: string) {
       subject: "Verify your Sociax account",
       html: await render(
         verifyUserEmail({
-          username: user.username,
+          username: user.firstName,
           code: code,
         })
       ),

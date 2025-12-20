@@ -16,11 +16,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { showErrorToast } from "@/lib/toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export default function SigninPage() {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(signinSchema),
@@ -31,6 +34,7 @@ export default function SigninPage() {
   });
 
   async function onSubmit(values: SigninFormValues) {
+    setLoading(true);
     const res = await signIn("credentials", {
       email: values.identifier,
       password: values.password,
@@ -42,7 +46,7 @@ export default function SigninPage() {
       return;
     }
 
-    router.replace("/");
+    setLoading(false);
   }
 
   return (
@@ -123,7 +127,7 @@ export default function SigninPage() {
 
                 {/* Submit */}
                 <Button size="lg" type="submit" className="w-full">
-                  Sign In
+                  {loading ? <Loader2 className="animate-spin" /> : "Sign In"}
                 </Button>
 
                 <p className="text-sm text-muted-foreground">

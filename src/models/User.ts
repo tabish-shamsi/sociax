@@ -14,8 +14,8 @@ export type User = {
   personalInfo: PersonalInfo;
   avatar: string;
   verified: boolean;
-  verificationCode: string;
-  verificationExpiry: Date;
+  verificationCode?: string;
+  verificationExpiry?: Date;
 };
 
 const userSchema = new mongoose.Schema<User>(

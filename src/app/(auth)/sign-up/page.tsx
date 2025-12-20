@@ -34,9 +34,10 @@ import { useState, useTransition } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { signupUser } from "./actions";
-import { showErrorToast, showSuccessToast } from "@/lib/toast";
+import { showSuccessToast } from "@/lib/toast";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { sendEmail } from "@/actions/send-email";
 
 export default function SignupPage() {
   const [isPending, startTransition] = useTransition();
@@ -71,12 +72,13 @@ export default function SignupPage() {
         });
         return;
       }
-      
+
       showSuccessToast(res.message);
       signIn("credentials", {
         email: values.email,
         password: values.password,
       });
+      await sendEmail(values.email)
       router.replace("/verify-user");
     });
   }

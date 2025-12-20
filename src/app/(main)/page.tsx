@@ -6,9 +6,9 @@ import ActivityCard from "@/components/home/ActivityCard";
 import FriendsSuggestion from "@/components/global/FriendsSuggestion";
 import Stories from "@/components/home/Stories";
 import CreatePost from "../../components/home/CreatePost";
-import Feed from "@/components/home/Feed";
+import Feed from "@/components/home/Feed"; 
 
-export default function HomePage() {
+export default async function HomePage() { 
   return (
     <div className="mt-16 lg:mx-20 lg:p-8 lg:w-auto md:w-xl p-6 mx-auto">
       <section id="Home_Page" className="flex gap-4 lg:gap-8 w-full">

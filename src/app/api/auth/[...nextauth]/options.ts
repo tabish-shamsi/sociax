@@ -51,9 +51,12 @@ export const authOptions: AuthOptions = {
     strategy: "jwt", // store info in JWT
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update") {
+        return { ...token, ...session.user }
+      }
       if (user) {
-        (token._id = user.id), (token.isVerified = user.verified);
+        ((token.id = user.id), (token.verified = user.verified));
         token.username = user.username;
         token.email = user.email;
         token.name = user.name;
@@ -65,7 +68,7 @@ export const authOptions: AuthOptions = {
     async session({ session, token }) {
       if (token) {
         session.user = token;
-      } 
+      }
       return session;
     },
   },
