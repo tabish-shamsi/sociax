@@ -1,22 +1,25 @@
-import { getPersonalInfo } from "@/actions/personal-info";
 import EducationAndEmploymentCard from "@/components/profile/about/EducationAndEmploymentCard";
 import HobbiesAndInterestsCard from "@/components/profile/about/HobbiesAndInterestsCard";
-import PersonalInfoCard from "@/components/profile/about/PersonalInfoCard"; 
+import PersonalInfoCard from "@/components/profile/about/PersonalInfoCard";  
+import PersonalInfoSkeleton from "@/components/skeletons/personal-info-skeleton";
+import { Suspense } from "react";
 
-export default async function page() {
-  const personalInfo = (await getPersonalInfo()).data 
-
+export default async function page() {  
   return (
     <section
       id="Profile_Page"
       className="flex flex-col lg:flex-row gap-4 lg:gap-8 w-full"
     >
       <aside className="flex flex-col gap-8 w-full lg:w-[40%]">
-        <PersonalInfoCard personalInfo={personalInfo} />
+        <Suspense fallback={<PersonalInfoSkeleton />}>
+          <PersonalInfoCard />
+        </Suspense>
       </aside>
       <main className="w-full lg:w-[60%] flex flex-col gap-8">
         <HobbiesAndInterestsCard />
+        <Suspense fallback={<div>Loading...</div>}>
         <EducationAndEmploymentCard />
+        </Suspense>
       </main>
     </section>
   );

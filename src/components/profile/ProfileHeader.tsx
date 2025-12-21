@@ -5,7 +5,6 @@ import { Separator } from "@/components/ui/separator";
 import { profileLinks } from "@/lib/profileNavLinks";
 import { user } from "@/lib/user";
 import {
-  Camera,
   CircleMinus,
   Ellipsis,
   Link2,
@@ -13,8 +12,7 @@ import {
   MessageSquareText,
   Settings2,
   UserPlus2,
-} from "lucide-react";
-import Image from "next/image";
+} from "lucide-react"; 
 import Link from "next/link";
 import { Button } from "../ui/button";
 import {

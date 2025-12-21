@@ -1,6 +1,6 @@
 "use client"
 
-import { updatePersonalInfo } from "@/actions/personal-info";
+import { updatePersonalInfo } from "@/actions/update-personal-info";
 import Form from "@/components/global/Form";
 import InputDate from "@/components/global/InputDate";
 import { InputField } from "@/components/global/InputField";
@@ -61,9 +61,9 @@ export default function PersonalInfoSheet({ personalInfo }: { personalInfo: Pers
             ...values,
             socials: cleanedSocials?.length ? cleanedSocials : [],
         };
-
+        setIsPending(true)
         try {
-            const res = await updatePersonalInfo(payload);
+            await updatePersonalInfo(payload);
         } catch (error) {
             console.error(error)
             showErrorToast("Something went wrong, please try again later.");

@@ -41,19 +41,18 @@ export default function UserDropdown() {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild className="cursor-pointer">
-            <div>
-              <div className="flex items-center gap-2">
-                <Avatar className="w-10 h-10">
-                  <AvatarImage src={""} alt={user.name} />
-                  <CustomAvatarFallback name={user.name} />
-                </Avatar>
 
-                <div className="hidden lg:flex flex-col">
-                  <h3 className="font-semibold text-white">{user.name}</h3>
-                  <span className="text-gray-300 text-sm">
-                    @{user.username}
-                  </span>
-                </div>
+            <div className="flex items-center gap-2">
+              <Avatar className="w-10 h-10">
+                <AvatarImage src={""} alt={user.name} />
+                <CustomAvatarFallback name={user.name} />
+              </Avatar>
+
+              <div className="hidden lg:flex flex-col">
+                <h3 className="font-semibold text-white">{user.name}</h3>
+                <span className="text-gray-300 text-sm">
+                  @{user.username}
+                </span>
               </div>
             </div>
           </DropdownMenuTrigger>

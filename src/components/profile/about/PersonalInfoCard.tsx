@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import {
@@ -10,10 +8,14 @@ import {
 } from "@/components/ui/card";
 import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
-import { PersonalInfo, Social } from "@/models/User";
+import { Social } from "@/models/User";
 import PersonalInfoSheet from "./PersonalInfoSheet";
+import { getPersonalInfo } from "@/data/get-personal-info";
+import { getUserSession } from "@/data/get-user-session";
+export default async function PersonalInfoCard() {
+  const { id } = await getUserSession()
+  const personalInfo = (await getPersonalInfo(id)).data
 
-export default function PersonalInfoCard({ personalInfo }: { personalInfo: PersonalInfo }) {
   return (
     <Card className="p-0 gap-0">
       <CardHeader className="p-6 gap-0 -mb-2">

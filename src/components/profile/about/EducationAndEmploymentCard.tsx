@@ -9,11 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { educationAndEmployment, interests } from "@/lib/user";
+import { educationAndEmployment } from "@/lib/user";
 import { NotebookPen } from "lucide-react";
-import { useState } from "react";
-import HobbiesAndInterestsForm from "./HobbiesAndInterestsForm";
-import { Interests } from "@/types/Interests";
+import { useState } from "react"; 
 import { EducationAndEmploymentItem } from "@/types/Education_Employment";
 import { EducationAndEmploymentForm } from "./EducationAndEmploymentForm";
 

@@ -1,3 +1,5 @@
+"use client"
+
 import { MessageCircleMore } from "lucide-react";
 import { DesktopSearchBar, MobileSearchBar } from "./search";
 import NavMenuDrop from "./nav-dropdown";
@@ -13,13 +15,11 @@ export default function TopHeader() {
         <SiteLogo />
         <NavMenuDrop />
         <DesktopSearchBar />
-
         <PageTitle />
       </div>
 
       <div className="flex items-center justify-center gap-4 md:gap-6">
         <MobileSearchBar />
-
         <NotificationsDropdown />
 
         <div>
