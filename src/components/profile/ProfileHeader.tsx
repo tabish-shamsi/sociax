@@ -12,7 +12,7 @@ import {
   MessageSquareText,
   Settings2,
   UserPlus2,
-} from "lucide-react"; 
+} from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import {
@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import HandleAvatar from "./HandleAvatar";
 import HandleCover from "./HandleCover";
+import { Suspense } from "react";
 
 export default function ProfileHeader() {
   return (

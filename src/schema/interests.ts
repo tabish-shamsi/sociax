@@ -10,3 +10,5 @@ export const interestsSchema = z.object({
   favourite_writers: z.string().optional(),
   other_interests: z.string().optional(),
 });
+
+export type InterestsFormValues = z.infer<typeof interestsSchema>;

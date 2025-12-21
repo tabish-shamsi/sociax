@@ -21,6 +21,23 @@ export type PersonalInfo = {
   socials: Social[];
 };
 
+export type Interests = {
+  hobbies?: string;
+  favourite_tv_shows?: string;
+  favourite_movies?: string;
+  favourite_games?: string;
+  favourite_music_artists?: string;
+  favourite_books?: string;
+  favourite_writers?: string;
+  other_interests?: string;
+};
+
+export type Education_Employment = {
+  title: string;
+  timestamp: string;
+  description: string;
+}
+
 export type User = {
   firstName: string;
   lastName: string;
@@ -30,6 +47,9 @@ export type User = {
   personalInfo: PersonalInfo;
   avatar: string;
   verified: boolean;
+  interests: Interests;
+  education_employment: Education_Employment[];
+
   verificationCode?: string;
   verificationExpiry?: Date;
 
@@ -40,6 +60,12 @@ export type User = {
 const socialSchema = new mongoose.Schema<Social>({
   name: String,
   link: String,
+});
+
+const education_employmentSchema = new mongoose.Schema<Education_Employment>({
+  title: String,
+  timestamp: String,
+  description: String,
 });
 
 const userSchema = new mongoose.Schema<User>(
@@ -97,6 +123,17 @@ const userSchema = new mongoose.Schema<User>(
       },
       socials: [socialSchema],
     },
+    interests: {
+      hobbies: String,
+      favourite_tv_shows: String,
+      favourite_movies: String,
+      favourite_games: String,
+      favourite_music_artists: String,
+      favourite_books: String,
+      favourite_writers: String,
+      other_interests: String,
+    },
+    education_employment: [education_employmentSchema],
     verificationCode: String,
     verificationExpiry: Date,
   },

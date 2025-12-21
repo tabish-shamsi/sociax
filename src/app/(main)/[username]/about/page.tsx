@@ -1,10 +1,12 @@
-import EducationAndEmploymentCard from "@/components/profile/about/EducationAndEmploymentCard";
-import HobbiesAndInterestsCard from "@/components/profile/about/HobbiesAndInterestsCard";
-import PersonalInfoCard from "@/components/profile/about/PersonalInfoCard";  
+import EducationAndEmploymentCard from "@/components/profile/about/EduEmpCard";
+import InterestsCard from "@/components/profile/about/InterestsCard";
+import PersonalInfoCard from "@/components/profile/about/PersonalInfoCard";
+import EducationAndEmploymentSkeleton from "@/components/skeletons/education-employment-skeleton";
+import InterestsSkeleton from "@/components/skeletons/interests-skeleton";
 import PersonalInfoSkeleton from "@/components/skeletons/personal-info-skeleton";
 import { Suspense } from "react";
 
-export default async function page() {  
+export default async function page() {
   return (
     <section
       id="Profile_Page"
@@ -16,9 +18,11 @@ export default async function page() {
         </Suspense>
       </aside>
       <main className="w-full lg:w-[60%] flex flex-col gap-8">
-        <HobbiesAndInterestsCard />
-        <Suspense fallback={<div>Loading...</div>}>
-        <EducationAndEmploymentCard />
+        <Suspense fallback={<InterestsSkeleton />}>
+          <InterestsCard />
+        </Suspense>
+        <Suspense fallback={<EducationAndEmploymentSkeleton />}>
+          <EducationAndEmploymentCard />
         </Suspense>
       </main>
     </section>

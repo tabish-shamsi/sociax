@@ -15,6 +15,8 @@ export async function sendEmail(email: string) {
     if (!user) return { success: false, message: "User not found" };
 
     const code = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log(code);
+    
     const codeExpiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
     const transporter = await createTransporter();
