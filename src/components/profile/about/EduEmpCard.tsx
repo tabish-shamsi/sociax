@@ -8,10 +8,10 @@ import { Separator } from "@/components/ui/separator";
 import { Education_Employment } from "@/models/User";
 import { EducationAndEmploymentSheet } from "./EduEmpSheet";
 import { getEducationEmployment } from "@/data/get-education-employment";
-import {educationAndEmployment as education_employment} from "@/lib/user"
+// import {educationAndEmployment as education_employment} from "@/lib/user"
 
 export default async function EducationAndEmploymentCard() {
-  // const education_employment = (await getEducationEmployment()).data as Education_Employment[]
+  const education_employment = (await getEducationEmployment()).data as Education_Employment[]
   return (
     <Card className="p-0 gap-0">
       <CardHeader className="p-6 gap-0">

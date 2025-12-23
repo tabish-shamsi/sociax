@@ -38,7 +38,7 @@ export const authOptions: AuthOptions = {
             name: user.firstName + " " + user.lastName,
             username: user.username,
             email: user.email,
-            avatar: user.avatar,
+            avatar: user.avatar.url,
             verified: user.verified,
           };
         } catch (error: any) {
@@ -52,15 +52,17 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async jwt({ token, user, trigger, session }) {
-      if (trigger === "update") {
-        return { ...token, ...session.user }
+      if (trigger === "update"){
+        return {...token, ...session.user}
       }
+
       if (user) {
-        ((token.id = user.id), (token.verified = user.verified));
+        token.id = user.id;
+        token.verified = user.verified
         token.username = user.username;
         token.email = user.email;
         token.name = user.name;
-        token.profileImageUrl = user.avatar;
+        token.avatar = user.avatar;
       }
 
       return token;

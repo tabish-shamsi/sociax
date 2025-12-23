@@ -9,10 +9,10 @@ export default function PageTitle() {
     if (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)) {
       return item.name;
     }
-  })[0].name;
+  })[0];
   return (
     <h2 className="text-lg font-semibold text-gray-100 px-4 lg:px-8 hidden md:block">
-      {title} Page
+      {/* {title} Page */}
     </h2>
   );
 }

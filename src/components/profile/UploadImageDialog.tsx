@@ -11,15 +11,18 @@ import {
 import { Images, Monitor } from "lucide-react";
 import { Separator } from "../ui/separator";
 import Cropper, { Area } from "react-easy-crop";
-import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { blobToFile, getCroppedImg } from "@/helpers/image-upload-helpers";
 import ChooseFromMyPhotos from "./ChooseFromMyPhotos";
+import { uploadAvatarCover } from "@/actions/upload-avatar-cover";
+import { showErrorToast, showSuccessToast } from "@/lib/toast";
+import { useSession } from "next-auth/react";
+import SubmitButton from "../global/SubmitButton";
 
 interface Props {
   setImage: Function;
   image: string;
-  setCroppedImage: Function;
+  setCroppedImage?: Function;
   setOpen: Function;
   ref: any;
   imageType: "Avatar" | "Cover";
@@ -39,6 +42,8 @@ export default function UploadImageDialog({
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
   const [chooseMyPhotos, setChoosePhotos] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { data: session, update } = useSession()
 
   const onCropComplete = useCallback((_: Area, croppedPixels: Area) => {
     setCroppedAreaPixels(croppedPixels);
@@ -56,46 +61,46 @@ export default function UploadImageDialog({
     setChoosePhotos(false);
   };
 
-  //   MAIN FUNCTION
-  //   const uploadAvatarToCloud = async () => {
-  //     if (!image || !croppedAreaPixels) return;
-
-  //     try {
-  //       const croppedBlob = await getCroppedImg(image, croppedAreaPixels);
-
-  //       const file = blobToFile(croppedBlob, `avatar-${Date.now()}.jpg`);
-
-  //       const formData = new FormData();
-  //       formData.append("file", file);
-
-  //       const res = await fetch("/api/upload-avatar", {
-  //         method: "POST",
-  //         body: formData,
-  //       });
-
-  //       if (!res.ok) throw new Error("Upload failed");
-
-  //       const data = await res.json();
-
-  //       setAvatar(data.url); // final CDN URL
-  //       resetState();
-  //       setOpen(false);
-  //     } catch (err) {
-  //       toast.error("Avatar upload failed");
-  //     }
-  //   };
-
   const handleUpload = async () => {
     if (!image || !croppedAreaPixels) return;
 
     try {
+      setLoading(true);
       const croppedBlob = await getCroppedImg(image, croppedAreaPixels);
       const file = blobToFile(croppedBlob, `avatar-${Date.now()}.jpg`);
-      setCroppedImage(URL.createObjectURL(file)); // final CDN URL
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await uploadAvatarCover(imageType, file,)
+
+      if (!res.success) {
+        showErrorToast(res.message)
+        return
+      }
+
+      console.log(res);
+
+
+      if (imageType === "Avatar") {
+        await update({
+          ...session,
+          user: {
+            ...session?.user,
+            avatar: res.data
+          }
+        })
+        return
+      } else {
+        setCroppedImage && setCroppedImage(URL.createObjectURL(file)); // final CDN URL
+      }
+
+      showSuccessToast(res.message)
+    } catch (err) {
+      showErrorToast(`Failed to upload ${imageType}. Please try again later.`);
+    } finally {
+      setLoading(false)
       resetState();
       setOpen(false);
-    } catch (err) {
-      toast.error("Avatar upload failed");
     }
   };
 
@@ -169,13 +174,16 @@ export default function UploadImageDialog({
               >
                 Cancel
               </Button>
-              <Button
-                className="w-1/2"
-                onClick={handleUpload}
-                disabled={!croppedAreaPixels}
-              >
-                Upload
-              </Button>
+              <div onClick={handleUpload} className="w-1/2">
+                <SubmitButton
+                  isLoading={loading}
+                  className="w-full"
+                  disabled={!croppedAreaPixels}
+                >
+                  Upload
+                </SubmitButton>
+              </div>
+
             </div>
           </DialogFooter>
         )}

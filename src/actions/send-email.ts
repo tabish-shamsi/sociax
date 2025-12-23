@@ -19,24 +19,26 @@ export async function sendEmail(email: string) {
     
     const codeExpiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
-    const transporter = await createTransporter();
-    await transporter.sendMail({
-      from: `"Sociax" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: "Verify your Sociax account",
-      html: await render(
-        verifyUserEmail({
-          username: user.firstName,
-          code: code,
-        })
-      ),
-    });
+    // const transporter = await createTransporter();
+    // await transporter.sendMail({
+    //   from: `"Sociax" <${process.env.EMAIL_USER}>`,
+    //   to: email,
+    //   subject: "Verify your Sociax account",
+    //   html: await render(
+    //     verifyUserEmail({
+    //       username: user.firstName,
+    //       code: code,
+    //     })
+    //   ),
+    // });
 
     const hashedCode = await bcrypt.hash(code, 6);
     user.verificationCode = hashedCode;
     user.verificationExpiry = codeExpiry;
-
     await user.save();
+
+    console.log(code);
+    
 
     return { success: true, message: "Verification email sent successfully!" };
   } catch (error) {

@@ -44,7 +44,7 @@ export default function UserDropdown() {
 
             <div className="flex items-center gap-2">
               <Avatar className="w-10 h-10">
-                <AvatarImage src={""} alt={user.name} />
+                <AvatarImage src={user.avatar} alt={user.name} />
                 <CustomAvatarFallback name={user.name} />
               </Avatar>
 

@@ -45,7 +45,14 @@ export type User = {
   email: string;
   password: string;
   personalInfo: PersonalInfo;
-  avatar: string;
+  avatar: {
+    fileId: string;
+    url: string;
+  };
+  cover: {
+    fileId: string;
+    url: string;
+  };
   verified: boolean;
   interests: Interests;
   education_employment: Education_Employment[];
@@ -96,7 +103,14 @@ const userSchema = new mongoose.Schema<User>(
       type: String,
       required: true,
     },
-    avatar: { type: String },
+    avatar: {
+      fileId: String,
+      url: String
+    },
+    cover: {
+      fileId: String,
+      url: String
+    },
     verified: {
       type: Boolean,
       default: false,

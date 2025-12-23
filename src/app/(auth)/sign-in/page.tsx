@@ -47,6 +47,7 @@ export default function SigninPage() {
     }
 
     setLoading(false);
+    router.push("/")
   }
 
   return (

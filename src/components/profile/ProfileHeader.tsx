@@ -1,5 +1,3 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { profileLinks } from "@/lib/profileNavLinks";
@@ -13,7 +11,6 @@ import {
   Settings2,
   UserPlus2,
 } from "lucide-react";
-import Link from "next/link";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -21,18 +18,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 import HandleAvatar from "./HandleAvatar";
 import HandleCover from "./HandleCover";
-import { Suspense } from "react";
+import ProfileLink from "./ProfileLink";
+import getCover from "@/data/get-cover";
 
-export default function ProfileHeader() {
+export default async function ProfileHeader() {
+  const cover = (await getCover()).data.url as string
   return (
     <Card className="gap-0 p-0 overflow-hidden w-full mb-8">
       <CardContent className="w-full p-0 relative">
         {/* COVER IMAGE */}
-        <HandleCover />
+        <HandleCover cover={cover} />
 
         <div className="flex flex-col md:flex-row lg:flex items-center justify-center lg:gap-16 md:gap-8  md:py-6 xl:gap-20 lg:px-8 lg:py-10 relative p-4">
           {/* ACTION BUTTONS FOR LARGE AND MEDIUM DEVICES */}
@@ -128,31 +125,5 @@ function ActionDropdown({ children }: { children: React.ReactNode }) {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-}
-
-interface ProfileLinkProps {
-  href: string;
-  name: string;
-  mobile?: boolean;
-}
-
-function ProfileLink({ href: link, name, mobile }: ProfileLinkProps) {
-  const pathname = usePathname();
-  const href = `/${user.username}${link}`;
-  const isActive = pathname === href;
-
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "xl:text-xl lg:text-lg md:text-base text-sm font-medium transition-colors hover:text-card-foreground",
-        isActive ? "text-card-foreground" : "text-gray-500 dark:text-gray-400",
-        mobile ? "block md:hidden" : "hidden md:block "
-      )}
-      key={name}
-    >
-      {name}
-    </Link>
   );
 }

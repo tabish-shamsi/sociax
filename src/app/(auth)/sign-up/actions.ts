@@ -49,8 +49,6 @@ export const signupUser = async (data: unknown) => {
     password: hashedPassword,
     personalInfo: { gender, birthday: new Date(birthday) },
   });
-
-  console.log(newUser);
-
+  
   return { success: true, message: "User Registered Successfully!" };
 };
