@@ -16,11 +16,9 @@ import { showErrorToast } from "@/lib/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction, useState } from "react";
-import { usePathname } from "next/navigation";
 
 export default function PersonalInfoForm({ setOpen, personalInfo }: { setOpen: Dispatch<SetStateAction<boolean>>, personalInfo: PersonalInfo }) {
     const [isPending, setIsPending] = useState(false);
-    const pathname = usePathname()
 
     function normalizeSocials(socials?: Social[]) {
         if (!socials || socials.length === 0) {
@@ -49,18 +47,19 @@ export default function PersonalInfoForm({ setOpen, personalInfo }: { setOpen: D
     });
 
     async function onSubmit(values: personalInfoFormValues) {
+        setIsPending(true)
         const cleanedSocials = values.socials?.filter(
             (s) => s.name?.trim() && s.link?.trim()
         );
 
         const payload = {
             ...values,
+            joined: personalInfo.joined,
             socials: cleanedSocials?.length ? cleanedSocials : [],
         };
-        setIsPending(true)
         try {
             setOpen(false)
-            await updatePersonalInfo(payload, pathname);
+            await updatePersonalInfo(payload);
         } catch (error) {
             console.error(error)
             showErrorToast("Something went wrong, please try again later.");

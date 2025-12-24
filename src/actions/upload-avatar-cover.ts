@@ -4,7 +4,7 @@ import { getUserSession } from "@/data/get-user-session"
 import { connectToDatabase } from "@/lib/db"
 import imagekit from "@/lib/imagekit"
 import User from "@/models/User"
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
 export async function uploadAvatarCover(type: "Avatar" | "Cover", image: { url: string; fileId: string }) {
     try {
         await connectToDatabase()
@@ -19,7 +19,7 @@ export async function uploadAvatarCover(type: "Avatar" | "Cover", image: { url: 
 
         if (!user) return { success: false, message: `Something went wrong while uploading ${type}. Please try again later` }
 
-        revalidatePath(`/${user.username}`)
+        revalidateTag(`profile-header-${user.username}`, "")
         return { success: true, message: `${type} uploaded successfully`}
     } catch (error) {
         console.error(error)

@@ -8,11 +8,23 @@ import ActionButtons from "./action-buttons"
 import BasicInfo from "./basic-info"
 import HandleCover from "./handle-cover"
 import HandleAvatar from "./handle-avatar"
-import { getServerSession } from "next-auth"
+import { unstable_cache } from "next/cache"
+import { connectToDatabase } from "@/lib/db"
+import User from "@/models/User"
+
+const getProfileHeaderData = (username: string) => unstable_cache(
+    async () => {
+        await connectToDatabase()
+        const user = await User.findOne({ username }).select("cover avatar firstName lastName username personalInfo.lives_in")
+        const data = user?.toJSON()
+        return { ...data, name: `${data.firstName} ${data.lastName}`, location: data.personal_info?.lives_in ?? "" }
+    },
+    [`profile-header-${username}`],
+    { tags: [`profile-header-${username}`] }
+)
 
 export default async function ProfileHeader({ username }: { username: string }) {
-    const { data } = await getUserByUsername(username, "cover avatar firstName lastName username personalInfo.lives_in")
-    const user = { ...data, name: `${data.firstName} ${data.lastName}`, location: data.personal_info?.lives_in ?? "" } 
+    const user = await getProfileHeaderData(username)()
     if (!user) return notFound()
 
     return (

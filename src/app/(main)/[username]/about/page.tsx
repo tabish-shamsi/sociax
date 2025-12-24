@@ -1,10 +1,10 @@
-import PersonalInfo from "@/components/personal-info";
-import EducationAndEmploymentCard from "@/components/profile/about/EduEmpCard";
-import InterestsCard from "@/components/profile/about/InterestsCard";
+import PersonalInfo from "@/components/personal-info"; 
 import EducationAndEmploymentSkeleton from "@/components/skeletons/education-employment-skeleton";
 import InterestsSkeleton from "@/components/skeletons/interests-skeleton";
 import PersonalInfoSkeleton from "@/components/skeletons/personal-info-skeleton";
+import Interests from "@/components/interests/index";
 import { Suspense } from "react";
+import EducationAndEmployment from "@/components/education-employment";
 
 export default async function ProfilePageAbout({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params
@@ -21,10 +21,10 @@ export default async function ProfilePageAbout({ params }: { params: Promise<{ u
       </aside>
       <main className="w-full lg:w-[60%] flex flex-col gap-8">
         <Suspense fallback={<InterestsSkeleton />}>
-          <InterestsCard />
+          <Interests username={username} />
         </Suspense>
         <Suspense fallback={<EducationAndEmploymentSkeleton />}>
-          <EducationAndEmploymentCard />
+          <EducationAndEmployment username={username} />
         </Suspense>
       </main>
     </section>

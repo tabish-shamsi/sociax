@@ -134,7 +134,7 @@ const userSchema = new mongoose.Schema<User>(
       status: String,
       joined: {
         type: Date,
-        default: new Date(),
+        default: Date.now(),
       },
       socials: [socialSchema],
     },
