@@ -2,9 +2,7 @@
 
 import imagekit from "@/lib/imagekit";
 
-export async function uploadImages(formData: FormData) {
-    const files = formData.getAll("files") as File[];
-
+export async function uploadImages(files: File[]) {
     if (!files.length) {
         throw new Error("No files provided");
     }

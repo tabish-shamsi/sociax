@@ -4,33 +4,23 @@ import { getUserSession } from "@/data/get-user-session"
 import { connectToDatabase } from "@/lib/db"
 import imagekit from "@/lib/imagekit"
 import User from "@/models/User"
-export async function uploadAvatarCover(type: "Avatar" | "Cover", file: File) {
+import { revalidatePath } from "next/cache"
+export async function uploadAvatarCover(type: "Avatar" | "Cover", image: { url: string; fileId: string }) {
     try {
         await connectToDatabase()
         const userId = (await getUserSession()).id
         if (!userId) return { success: false, message: "Please sign in to use this feature" }
 
-        const buffer = Buffer.from(await file.arrayBuffer());
-
-        const uploadImage = await imagekit.upload({
-            file: buffer,
-            fileName: file.name,
-            folder: `/${type}s/${userId}`,
-            useUniqueFileName: false
-        })
-
         const user = await User.findByIdAndUpdate(userId, {
             $set: {
-                [type === "Avatar" ? "avatar" : "cover"]: {
-                    fileId: uploadImage.fileId,
-                    url: uploadImage.url
-                }
+                [type === "Avatar" ? "avatar" : "cover"]: image
             }
-        }).select("avatar")
+        }).select("")
 
         if (!user) return { success: false, message: `Something went wrong while uploading ${type}. Please try again later` }
 
-        return { success: true, message: `${type} uploaded successfully`, data: type === "Avatar" ? user.avatar.url : "" }
+        revalidatePath(`/${user.username}`)
+        return { success: true, message: `${type} uploaded successfully`}
     } catch (error) {
         console.error(error)
         return { success: false, message: `Something went wrong while uploading ${type}. Please try again later` }

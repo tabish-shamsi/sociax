@@ -4,7 +4,7 @@ import { getUserSession } from "@/data/get-user-session"
 import { connectToDatabase } from "@/lib/db"
 import User from "@/models/User"
 import { personalInfoSchema } from "@/schema/personal-info"
-import { revalidatePath, } from "next/cache"
+import { revalidatePath, revalidateTag, } from "next/cache"
 
 
 
@@ -25,7 +25,7 @@ export async function updatePersonalInfo(data: unknown) {
         user.personalInfo = parsed.data
         await user.save()
 
-        revalidatePath(`/${user._id}/about`)
+        revalidateTag(`personal-info-${user.username}`, "")
         return { success: true, message: "Personal info updated successfully" }
     } catch (error: any) {
         console.error(error)

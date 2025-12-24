@@ -44,8 +44,8 @@ export default function UserDropdown() {
 
             <div className="flex items-center gap-2">
               <Avatar className="w-10 h-10">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <CustomAvatarFallback name={user.name} />
+                <AvatarImage src={user?.avatar} alt={user?.name} />
+                <CustomAvatarFallback name={user?.name} />
               </Avatar>
 
               <div className="hidden lg:flex flex-col">
@@ -61,9 +61,9 @@ export default function UserDropdown() {
             {/* User section */}
             <DropdownMenuLabel className="flex items-center gap-2">
               <User
-                title={user.name}
-                subtitle={`@${user.username}`}
-                avatarSrc={user.avatar as string}
+                title={user?.name}
+                subtitle={`@${user?.username}`}
+                avatarSrc={user?.avatar as string}
                 size="8"
               />
             </DropdownMenuLabel>

@@ -39,6 +39,7 @@ export type Education_Employment = {
 }
 
 export type User = {
+  _id: mongoose.Types.ObjectId;
   firstName: string;
   lastName: string;
   username: string;

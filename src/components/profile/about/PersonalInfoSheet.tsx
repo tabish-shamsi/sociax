@@ -18,8 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { NotebookPen } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import AddSocials from "./AddSocials";
-import { format } from "date-fns";
+import AddSocials from "./AddSocials"; 
 import { showErrorToast, showSuccessToast } from "@/lib/toast";
 
 export default function PersonalInfoSheet({ personalInfo }: { personalInfo: PersonalInfo }) {
