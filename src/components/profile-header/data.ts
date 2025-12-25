@@ -12,7 +12,7 @@ export const LINKS = [
     href: "/friends",
   },
   {
-    name: "Photos",
-    href: "/photos",
+    name: "Albums",
+    href: "/albums",
   },
 ];

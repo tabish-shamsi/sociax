@@ -2,9 +2,10 @@
 
 import { getUserSession } from "@/data/get-user-session"
 import { connectToDatabase } from "@/lib/db"
-import imagekit from "@/lib/imagekit"
+import Album from "@/models/Album"
+import Image from "@/models/Image"
 import User from "@/models/User"
-import { revalidatePath, revalidateTag } from "next/cache"
+import { revalidateTag } from "next/cache"
 export async function uploadAvatarCover(type: "Avatar" | "Cover", image: { url: string; fileId: string }) {
     try {
         await connectToDatabase()
@@ -19,8 +20,35 @@ export async function uploadAvatarCover(type: "Avatar" | "Cover", image: { url: 
 
         if (!user) return { success: false, message: `Something went wrong while uploading ${type}. Please try again later` }
 
+        let albumId;
+
+        const albumExists = await Album.findOne({
+            userId: user._id,
+            slug: type.toLowerCase() + "-images"
+        })
+
+        if (!albumExists) {
+            const createAlbum = await Album.create({
+                title: type + " Images",
+                userId: user._id,
+                slug: type.toLowerCase() + "-images",
+            })
+            albumId = createAlbum._id
+        } else {
+            albumId = albumExists._id
+        }
+
+        await Image.create({
+            userId: user._id,
+            fileId: image.fileId,
+            albumId,
+            url: image.url
+        })
+
         revalidateTag(`profile-header-${user.username}`, "")
-        return { success: true, message: `${type} uploaded successfully`}
+        revalidateTag(`images-${user.username}`, "")
+
+        return { success: true, message: `${type} uploaded successfully` }
     } catch (error) {
         console.error(error)
         return { success: false, message: `Something went wrong while uploading ${type}. Please try again later` }

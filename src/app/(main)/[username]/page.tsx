@@ -1,12 +1,6 @@
-import PostCard from "@/components/global/PostCard";
-import PersonalInfo from "@/components/personal-info";
-import PersonalInfoCard from "@/components/profile/about/PersonalInfoCard";
-import Following from "@/components/profile/timeline/Following";
-import Friends from "@/components/profile/timeline/Friends";
-import LastPhotos from "@/components/profile/timeline/LastPhotos";
-import PersonalInfoSkeleton from "@/components/skeletons/personal-info-skeleton";
-import { posts, user } from "@/lib/user";
-import { Post } from "@/types/Post";
+import LastUploadedImages from "@/components/last-uploaded-images";
+import PersonalInfo from "@/components/personal-info"; 
+import PersonalInfoSkeleton from "@/components/skeletons/personal-info-skeleton"; 
 import { Suspense } from "react";
 
 export default async function ProfilePage({params}: {params: Promise<{username: string}>}) {  
@@ -19,9 +13,9 @@ export default async function ProfilePage({params}: {params: Promise<{username: 
         <Suspense fallback={<PersonalInfoSkeleton />}>
           <PersonalInfo username={username} />
         </Suspense>
-        {/* <LastPhotos />
-        <Friends />
-        <Following /> */}
+       <Suspense fallback={<div>Loading...</div>}> 
+         <LastUploadedImages username={username} />
+       </Suspense>
       </aside>
 
       <main className="w-full lg:w-[65%] flex flex-col gap-6 lg:gap-8">{

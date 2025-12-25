@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Control, FieldPath, FieldValues } from "react-hook-form";
 
 interface FormInputFieldProps<T extends FieldValues> {
-    type?: "email" | "password";
+    type?: "email" | "password" | "image";
     control: Control<T>;
     name: FieldPath<T>;
     label: string;
@@ -24,7 +24,7 @@ export function InputField<T extends FieldValues>({
                 <FormItem className="w-full">
                     <FormLabel>{label}</FormLabel>
                     <FormControl >
-                        <Input  type={type ? type : "text"} {...field} />
+                        <Input type={type === "image" ? "file" : type ? type : "text"} accept={type === "image" ? "image/**" : ""} {...field} />
                     </FormControl>
                     <FormMessage />
                 </FormItem>

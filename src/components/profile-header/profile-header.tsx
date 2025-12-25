@@ -16,17 +16,18 @@ const getProfileHeaderData = (username: string) => unstable_cache(
     async () => {
         await connectToDatabase()
         const user = await User.findOne({ username }).select("cover avatar firstName lastName username personalInfo.lives_in")
+        if(!user) return notFound()
+
         const data = user?.toJSON()
-        return { ...data, name: `${data.firstName} ${data.lastName}`, location: data.personal_info?.lives_in ?? "" }
+        return { ...data, name: `${data?.firstName} ${data?.lastName}`, location: data.personal_info?.lives_in ?? "" }
     },
     [`profile-header-${username}`],
-    { tags: [`profile-header-${username}`] }
+    { tags: [`profile-header-${username}`, `basic-info-${username}`] }
 )
 
 export default async function ProfileHeader({ username }: { username: string }) {
     const user = await getProfileHeaderData(username)()
-    if (!user) return notFound()
-
+    
     return (
         <Card className="gap-0 p-0 overflow-hidden w-full mb-8">
             <CardContent className="w-full p-0 relative">

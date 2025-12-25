@@ -18,7 +18,7 @@ import { uploadAvatarCover } from "@/actions/upload-avatar-cover";
 import { showErrorToast, showSuccessToast } from "@/lib/toast";
 import { useSession } from "next-auth/react";
 import SubmitButton from "../global/SubmitButton";
-import { uploadImages } from "@/actions/upload-images";
+import uploadImage from "@/actions/upload-image";
 
 interface Props {
   setImage: Function;
@@ -66,21 +66,22 @@ export default function UploadImageDialog({
     try {
       setLoading(true);
       const croppedBlob = await getCroppedImg(image, croppedAreaPixels);
-      const file = blobToFile(croppedBlob, `avatar-${Date.now()}.jpg`);
+      
+      const file = blobToFile(croppedBlob, `${imageType}-${Date.now()}.jpg`);
 
-      const uploadFile = await uploadImages([file])
+      const uploadFile = await uploadImage(file)
 
       if (imageType === "Avatar") {
         await update({
           ...session,
           user: {
             ...session?.user,
-            avatar: uploadFile[0].url
+            avatar: uploadFile.url
           }
         })
       }
 
-      const res = await uploadAvatarCover(imageType, uploadFile[0])
+      const res = await uploadAvatarCover(imageType, uploadFile)
 
       if (!res.success) {
         showErrorToast(res.message)
