@@ -8,7 +8,7 @@ export type Image = {
 
 export type Post = {
     _id: mongoose.Types.ObjectId;
-    authorId: mongoose.Types.ObjectId;
+    userId: mongoose.Types.ObjectId;
     content: string;
     tags?: mongoose.Types.ObjectId[];
     feeling?: string;

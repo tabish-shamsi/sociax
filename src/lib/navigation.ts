@@ -8,7 +8,6 @@ import {
   CloudSun,
   Calendar,
 } from "lucide-react";
-import { user } from "./user";
 
 export const navItems = [
   {
@@ -18,32 +17,37 @@ export const navItems = [
   },
   {
     name: "Profile",
-    href: `/${user.username}`,
+    href: `/profile`,
     icon: User,
   },
   {
-    name: "Favourite Pages",
-    href: "/favourites",
-    icon: Heart,
-  },
-  {
-    name: "Friends Groups",
-    href: "/groups",
+    name: "Friends",
+    href: `/friends`,
     icon: Users,
   },
-  {
-    name: "Music & Playlist",
-    href: "/music",
-    icon: Music,
-  },
-  {
-    name: "Weather Widget",
-    href: "/weather",
-    icon: CloudSun,
-  },
-  {
-    name: "Calendar & Events",
-    href: "/calendar",
-    icon: Calendar,
-  },
+  // {
+  //   name: "Favourite Pages",
+  //   href: "/favourites",
+  //   icon: Heart,
+  // },
+  // {
+  //   name: "Friends Groups",
+  //   href: "/groups",
+  //   icon: Users,
+  // },
+  // {
+  //   name: "Music & Playlist",
+  //   href: "/music",
+  //   icon: Music,
+  // },
+  // {
+  //   name: "Weather Widget",
+  //   href: "/weather",
+  //   icon: CloudSun,
+  // },
+  // {
+  //   name: "Calendar & Events",
+  //   href: "/calendar",
+  //   icon: Calendar,
+  // },
 ];
